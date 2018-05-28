@@ -8,15 +8,19 @@ contract Quiz {
     uint256[2] public balances;
     mapping(address => uint256)[2] public playersMap;
     uint8 public winSide;
+    bool public closing;
     
     constructor(string _title1, string _title2, address creator) public {
         manager = creator;
         titles[0] = _title1;
         titles[1] = _title2;
         complete = false;
+        closing = false;
     }
     
     function bet(uint8 side) public payable {
+        if (closing) return;
+        
         require(msg.value > .0001 ether);
         require(side == 0 || side == 1);
         
@@ -30,7 +34,14 @@ contract Quiz {
         playersMap[side][msg.sender] = msg.value + _value;
     }
     
-    function pickWinner(uint8 side) public restricted(side) {
+    function closeBet() public restricted() {
+        closing = true;
+    }
+    
+    function pickWinner(uint8 side) public restricted() {
+        require(side == 0 || side == 1);
+        require(balances[0] + balances[1] > 0);
+        
         uint totlaBalance = address(this).balance;
         for (uint i = 0; i < players.length; i++) {
             uint _balance = playersMap[side][players[i]];
@@ -46,8 +57,7 @@ contract Quiz {
         complete = true;
     }
     
-    function refund() public {
-        require(msg.sender == manager);
+    function refund() public restricted() {
         for (uint i = 0; i < 2; i++) {
             for (uint j = 0; j < players.length; j++) {
                 uint _balance = playersMap[i][players[j]];
@@ -64,12 +74,11 @@ contract Quiz {
         players = new address[](0);
         balances = [0, 0];
         titles = ["", ""];
+        closing = false;
     }
     
-    modifier restricted(uint8 side) {
+    modifier restricted() {
         require(msg.sender == manager);
-        require(side == 0 || side == 1);
-        require(balances[0] + balances[1] > 0);
         _;
     }
 
