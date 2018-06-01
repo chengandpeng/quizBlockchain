@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "compile": "node ethereum/compile.js",
+    "deploy": "node ethereum/deploy.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +17,13 @@
   "bugs": {
     "url": "https://github.com/chengandpeng/quizBlockchain/issues"
   },
-  "homepage": "https://github.com/chengandpeng/quizBlockchain#readme"
+  "homepage": "https://github.com/chengandpeng/quizBlockchain#readme",
+  "dependencies": {
+    "dotenv": "^5.0.1",
+    "fs-extra": "^6.0.1",
+    "npm": "^6.1.0",
+    "solc": "^0.4.24",
+    "truffle-hdwallet-provider": "0.0.5",
+    "web3": "^1.0.0-beta.34"
+  }
 }
