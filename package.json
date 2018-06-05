@@ -4,9 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "eject": "react-scripts eject",
     "compile": "node ethereum/compile.js",
     "deploy": "node ethereum/deploy.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -19,11 +22,18 @@
   },
   "homepage": "https://github.com/chengandpeng/quizBlockchain#readme",
   "dependencies": {
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
     "dotenv": "^5.0.1",
     "fs-extra": "^6.0.1",
+    "ganache-cli": "^6.1.0",
+    "mocha": "^5.2.0",
     "npm": "^6.1.0",
     "solc": "^0.4.24",
-    "truffle-hdwallet-provider": "0.0.5",
+    "truffle-hdwallet-provider": "0.0.3",
     "web3": "^1.0.0-beta.34"
+  },
+  "devDependencies": {
+    "react-scripts": "1.1.4"
   }
 }

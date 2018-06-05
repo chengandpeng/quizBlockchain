@@ -8,8 +8,10 @@ const mainFile = 'QuizFactory.sol';
  * import callback
  */
 function findImports (path) {
-    return {
-        'contents': fs.readFileSync(getContractPath(path), 'utf8')
+    if(path) {
+        return {
+            'contents': fs.readFileSync(getContractPath(path), 'utf8')
+        }
     }
 }
 
