@@ -17,7 +17,8 @@ npm run compile
 ## Deploy
 在根目录新建一个`.env`文件，输入自己的钱包nemonic和infura链接
 
-[infura](https://infura.io/)可以提供连接到以太坊的API接口，
+
+[infura](https://infura.io/)可以提供连接到以太坊的API接口。
 
 ```
 NEMONIC={钱包地址}
