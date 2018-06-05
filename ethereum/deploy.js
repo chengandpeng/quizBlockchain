@@ -6,7 +6,6 @@ const HDWalletProvider = require('truffle-hdwallet-provider');
 const Web3 = require('web3');
 
 const compiledFactory = require('./build/QuizFactory.json');
-// const compiledFactory = require('./build/CampaignFactory.json');
 
 const { MNEMONIC, INFURA_URL} = process.env;
 
@@ -28,7 +27,6 @@ const deploy = async () => {
         .deploy({ data: compiledFactory.bytecode })
         .send({ 
             gas: '4000000', 
-            // gasPrice: '10000000000', 
             from: accounts[0] })
         .catch(err => console.log(err));
 
