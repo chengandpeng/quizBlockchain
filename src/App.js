@@ -1,26 +1,28 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
+import { Layout } from 'antd';
 import Home from './Pages/Home';
+import Header from './Pages/Header';
+
+const { Footer, Content } = Layout;
 
 class App extends Component {
 
 	render() {		
 		return (
 			<Router>
-				<div>
-					<ul>
-						<li><Link to="/">Home</Link></li>
-						<li><Link to="/about">About</Link></li>
-						<li><Link to="/topics">Topics</Link></li>
-					</ul>
-
-					<hr/>
-
-					<Route exact path="/" component={Home}/>
-					{/* <Route path="/about" component={About}/>
-					<Route path="/topics" component={Topics}/> */}
-				</div>
+				<Layout>
+					<Header />
+					<Content style={{ padding: '0 50px', marginTop: 64 }}>
+						<Route exact path="/" component={Home}/>
+						{/* <Route path="/about" component={About}/>
+						<Route path="/topics" component={Topics}/> */}
+					</Content>
+					<Footer style={{ textAlign: 'center' }}>
+						Said Calculation @2018 Created by CP
+					</Footer>
+				</Layout>
 			</Router>
 		);
 	}
